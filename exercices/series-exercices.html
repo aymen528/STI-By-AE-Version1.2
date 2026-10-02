@@ -597,14 +597,20 @@
       }
 
       .modal-close {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
         background: transparent;
         border: none;
-        font-size: 1.5em;
+        font-family: inherit;
+        font-size: 0.85em;
+        font-weight: 600;
         color: var(--muted);
         cursor: pointer;
-        padding: 4px 8px;
+        padding: 7px 10px;
         border-radius: 6px;
         line-height: 1;
+        white-space: nowrap;
       }
 
       .modal-close:hover {
@@ -903,10 +909,16 @@
                 Ressources
               </a>
               <button
-                class="corrige"
+                class="enonce"
                 onclick="openPdfModal('../projets/site-tunisie/index.html', 'Site Tunisie — Aperçu & Corrigé')"
               >
                 Aperçu + Corrigé
+              </button>
+              <button
+                class="enonce"
+                onclick="openPdfModal('../projets/site-tunisie/correction-details/carte-timbre-droite-haut.html', 'Site Tunisie —bg image + couleur transparente ')"
+              >
+                Détail : bg :image + couleur transparente
               </button>
             </div>
           </div>
@@ -1308,8 +1320,8 @@
               class="modal-expand"
               id="modalOpenTabBtn"
               onclick="openModalInNewTab()"
-              aria-label="Ouvrir dans un nouvel onglet"
-              title="Ouvrir dans un nouvel onglet"
+              aria-label="Ouvrir dans un nouvel onglet avec un bouton de retour aux exercices"
+              title="Ouvrir dans un nouvel onglet — un bouton permettra de revenir aux exercices"
             >
               ⧉
             </button>
@@ -1334,9 +1346,10 @@
             <button
               class="modal-close"
               onclick="closePdfModal()"
-              aria-label="Fermer"
+              aria-label="Fermer et revenir aux exercices"
+              title="Fermer et revenir aux exercices"
             >
-              &times;
+              ← Exercices
             </button>
           </div>
         </div>
@@ -1431,8 +1444,83 @@
         modalUrl = "";
       }
 
+      function echapperHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (caractere) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[caractere];
+        });
+      }
+
       function openModalInNewTab() {
-        if (modalUrl) window.open(modalUrl, "_blank", "noopener");
+        if (!modalUrl) return;
+
+        // On ouvre une page de consultation avec un vrai bouton « Retour ».
+        // Le document est chargé dans une iframe pour garder cette barre visible.
+        var popup = window.open("about:blank", "_blank");
+        if (!popup) {
+          window.alert(
+            "Le navigateur a bloqué le nouvel onglet. Autorisez les fenêtres pop-up pour ce site, puis réessayez."
+          );
+          return;
+        }
+
+        var urlDocument = new URL(modalUrl, window.location.href).href;
+        var urlRetour = window.location.href;
+        var titre =
+          document.getElementById("modalTitle").textContent || "Document";
+        var page =
+          '<!doctype html><html lang="fr"><head><meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+          "<title>" +
+          echapperHtml(titre) +
+          " — STI Quiz</title>" +
+          "<style>" +
+          "*{box-sizing:border-box}" +
+          "html,body{width:100%;height:100%;margin:0}" +
+          "body{display:grid;grid-template-rows:auto minmax(0,1fr);background:#e9ebf2;color:#14161f;font-family:Arial,sans-serif}" +
+          ".barre{display:flex;align-items:center;gap:16px;min-height:64px;padding:10px 18px;background:#fff;border-bottom:1px solid #e1e4ec}" +
+          ".retour{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;padding:10px 14px;border-radius:9px;background:#4338ca;color:#fff;text-decoration:none;font-weight:700}" +
+          ".retour:hover{background:#3529b6}" +
+          ".titre{min-width:0;flex:1}" +
+          ".titre strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:1rem}" +
+          ".titre span{display:block;margin-top:3px;color:#5b6172;font-size:.82rem}" +
+          "main{min-height:0}" +
+          "iframe{display:block;width:100%;height:100%;border:0;background:#fff}" +
+          "a:focus-visible{outline:3px solid #7c83f0;outline-offset:2px}" +
+          "@media(max-width:640px){.barre{flex-wrap:wrap;gap:8px;padding:9px 12px}.titre{order:2;flex-basis:100%}.titre strong{white-space:normal}}" +
+          "</style></head><body>" +
+          '<header class="barre"><a class="retour" href="' +
+          echapperHtml(urlRetour) +
+          '"><span aria-hidden="true">←</span> Retour aux exercices</a>' +
+          '<div class="titre"><strong>' +
+          echapperHtml(titre) +
+          "</strong><span>STI Quiz — exercice ouvert dans un nouvel onglet</span></div></header>" +
+          '<main><iframe src="' +
+          echapperHtml(urlDocument) +
+          '" title="' +
+          echapperHtml(titre) +
+          '" allow="fullscreen; autoplay; clipboard-write" allowfullscreen></iframe></main>' +
+          "</body></html>";
+
+        try {
+          // Évite qu'un document ouvert puisse naviguer l'onglet d'origine.
+          popup.opener = null;
+          popup.document.open();
+          popup.document.write(page);
+          popup.document.close();
+        } catch (e) {
+          try {
+            popup.close();
+          } catch (ignore) {}
+          window.alert(
+            "Impossible d'ouvrir le document dans un nouvel onglet."
+          );
+        }
       }
 
       function reloadModalFrame() {
@@ -1481,6 +1569,22 @@
             return; // autre domaine : impossible de contrôler, on ne dit rien
           }
           if (!doc || !doc.body) return;
+
+          // Quand le focus est dans l'exercice intégré, Échap ferme aussi la fenêtre.
+          // En plein écran natif, le premier Échap quitte d'abord le plein écran ;
+          // un second Échap (ou le bouton « Exercices ») revient au sommaire.
+          try {
+            doc.addEventListener(
+              "keydown",
+              function (e) {
+                if (e.key !== "Escape") return;
+                if (doc.fullscreenElement || document.fullscreenElement) return;
+                e.preventDefault();
+                closePdfModal();
+              },
+              true
+            );
+          } catch (e) {}
 
           var ok = false;
           try {

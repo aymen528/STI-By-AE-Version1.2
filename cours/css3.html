@@ -70,7 +70,7 @@
         border-collapse: separate;
         border-spacing: 0;
         width: 100%;
-        min-width: 760px;
+        min-width: 920px;
         background: #fff;
         border-radius: 12px;
         overflow: hidden;
@@ -309,6 +309,35 @@
         align-items: center;
         justify-content: center;
       }
+      .demo.float-demo {
+        display: block;
+        text-align: left;
+        color: #3c4560;
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+      .float-demo .float-box {
+        float: left;
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        margin: 0 10px 6px 0;
+        border-radius: 8px;
+        background: #d6336c;
+        color: #fff;
+        text-align: center;
+        font-size: 9.5px;
+        font-weight: 700;
+      }
+      .float-demo .float-clear {
+        clear: both;
+        margin: 7px 0 0;
+        padding-top: 6px;
+        border-top: 1px dashed #dfe3f3;
+        color: #5b6584;
+        font-size: 9.5px;
+      }
       .demo-btn {
         display: inline-flex;
         align-items: center;
@@ -492,21 +521,36 @@
       .btn-detail{display:inline-flex;align-items:center;gap:6px;background:#0f1c47;color:#fff;border:0;border-radius:8px;padding:7px 12px;font:600 12px "Inter",system-ui,sans-serif;cursor:pointer}
       .btn-detail:hover{background:#243a8a}
       .btn-detail:focus-visible,.win-bar button:focus-visible{outline:3px solid #5b8cff;outline-offset:2px}
-      #win-overlay{position:fixed;inset:0;background:rgba(15,28,71,.55);display:none;z-index:1000}
+      #win-overlay{position:fixed;inset:0;overflow:hidden;background:rgba(15,28,71,.55);display:none;z-index:1000}
       #win-overlay.open{display:block}
+      @supports (height:100dvh){#win-overlay{bottom:auto;height:100dvh}}
       #win{position:absolute;background:#fff;color:#1c2440;border:1px solid #e2e5f0;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.4);width:min(720px,calc(100% - 16px));height:min(560px,calc(100% - 16px));min-width:280px;min-height:220px;max-width:100%;max-height:100%;display:flex;flex-direction:column;resize:both;overflow:hidden}
-      #win.max{left:0!important;top:0!important;width:100%!important;height:100%!important;border-radius:0;resize:none}
-      .win-bar{display:flex;align-items:center;gap:8px;background:#fdfcf7;color:#0f1c47;padding:8px 12px;cursor:move;touch-action:none;user-select:none;border-bottom:1px solid #e7e1d0}
-      .win-bar h2{flex:1;margin:0;font-size:14px;font-family:"Poppins",system-ui,sans-serif}
-      .win-bar button{background:#eef0f6;color:#0f1c47;border:0;border-radius:6px;width:30px;height:28px;font-size:15px;cursor:pointer}
+      #win.max{left:0!important;top:0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;border-radius:0;resize:none}
+      .win-bar{display:flex;flex:0 0 auto;align-items:center;gap:8px;background:#fdfcf7;color:#0f1c47;padding:8px 12px;cursor:move;touch-action:none;user-select:none;border-bottom:1px solid #e7e1d0}
+      .win-bar h2{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0;font-size:14px;font-family:"Poppins",system-ui,sans-serif}
+      .win-bar button{flex:0 0 30px;background:#eef0f6;color:#0f1c47;border:0;border-radius:6px;width:30px;height:28px;font-size:15px;cursor:pointer;touch-action:manipulation}
       .win-bar button:hover{background:#dde3f5}
       .win-bar #win-close:hover{background:#fbdcdc;color:#b02a2a}
-      .win-body{flex:1;overflow:auto;padding:14px 18px 20px;font-size:14px;line-height:1.55}
+      .win-body{flex:1;min-width:0;min-height:0;overflow:auto;padding:14px 18px 20px;font-size:14px;line-height:1.55;-webkit-overflow-scrolling:touch}
+      @media(max-width:640px){
+        #win{width:calc(100% - 16px);height:min(560px,calc(100% - 16px));min-width:0;min-height:0;resize:none}
+        #win.max{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+        .win-bar{gap:6px;padding:8px 10px}
+        .win-bar button{flex-basis:44px;width:44px;height:44px;border-radius:10px;font-size:18px}
+        .win-body{padding:12px 14px calc(20px + env(safe-area-inset-bottom,0px))}
+      }
       .win-body h3{margin:18px 0 6px;font-size:15px}
       .win-body p{margin:6px 0}
       .win-body .codebox{white-space:pre;margin:8px 0}
       .win-body .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0}
       .win-body .stage{display:grid;place-items:center;min-height:110px;background:#eef1fb;border-radius:10px;padding:12px}
+      .win-body .float-stage{display:block;min-height:175px;padding:14px;background:#fff;border:1px solid #c9d2ef;border-radius:12px;overflow:hidden;color:#3c4560;font-size:12px;line-height:1.65}
+      .win-body .float-photo{position:relative;float:left;display:grid;place-items:center;width:108px;height:86px;margin:0 14px 8px 0;border:1px solid rgba(15,28,71,.12);border-radius:10px;background:linear-gradient(180deg,#89dcf5 0 55%,#56b879 55% 100%);color:#fff;font-weight:800;text-align:center;box-shadow:0 4px 10px rgba(15,28,71,.18)}
+      .win-body .float-photo::before{content:"";position:absolute;top:12px;right:18px;width:14px;height:14px;border-radius:50%;background:#ffe078}
+      .win-body .float-photo span{position:relative;display:block;padding:3px 9px;border-radius:999px;background:rgba(15,28,71,.72);font-size:10px}
+      .win-body .float-copy{margin:0!important}
+      .win-body .float-clear{clear:both;margin:10px 0 0!important;padding:8px 0 0;border-top:1px dashed #c9d2ef;color:#5b6584;font-size:11px}
+      @media(max-width:480px){.win-body .float-photo{width:82px;height:72px;margin-right:9px}}
       .win-body .tgt{background:#fff;border-radius:10px;padding:14px 22px;font:800 30px "Poppins",system-ui,sans-serif}
       .win-body table{border:1px solid #1c2440;margin:6px 0}
       .win-body td,.win-body th{border:1px solid #1c2440;padding:6px 10px}
@@ -663,7 +707,7 @@
           <span class="css-badge" aria-hidden="true">CSS3</span>
           <h1>Fiche Synthèse Globale CSS3</h1>
         </a>
-        <nav class="toc-nav" aria-label="Sommaire des points 1 à 8"><ul class="toc"><li><a href="#point-1" title="Sélecteurs" aria-label="Point 1 : Sélecteurs"><b>1</b><span class="lbl"><span class="l-long">Sélecteurs</span><span class="l-short">Sélecteurs</span></span></a></li><li><a href="#point-2" title="Texte" aria-label="Point 2 : Texte"><b>2</b><span class="lbl"><span class="l-long">Texte</span><span class="l-short">Texte</span></span></a></li><li><a href="#point-3" title="Arrière-plan" aria-label="Point 3 : Arrière-plan"><b>3</b><span class="lbl"><span class="l-long">Arrière-plan</span><span class="l-short">Fond</span></span></a></li><li><a href="#point-4" title="Boîtes &amp; Display" aria-label="Point 4 : Boîtes &amp; Display"><b>4</b><span class="lbl"><span class="l-long">Boîtes &amp; Display</span><span class="l-short">Boîtes</span></span></a></li><li><a href="#point-5" title="Position &amp; Flex" aria-label="Point 5 : Position &amp; Flex"><b>5</b><span class="lbl"><span class="l-long">Position &amp; Flex</span><span class="l-short">Position</span></span></a></li><li><a href="#point-6" title="Bordures" aria-label="Point 6 : Bordures"><b>6</b><span class="lbl"><span class="l-long">Bordures</span><span class="l-short">Bordures</span></span></a></li><li><a href="#point-7" title="Listes &amp; Tableaux" aria-label="Point 7 : Listes &amp; Tableaux"><b>7</b><span class="lbl"><span class="l-long">Listes &amp; Tableaux</span><span class="l-short">Listes</span></span></a></li><li><a href="#point-8" title="Transform &amp; Animations" aria-label="Point 8 : Transform &amp; Animations"><b>8</b><span class="lbl"><span class="l-long">Transform &amp; Animations</span><span class="l-short">Animations</span></span></a></li></ul></nav>
+        <nav class="toc-nav" aria-label="Sommaire des points 1 à 8"><ul class="toc"><li><a href="#point-1" title="Sélecteurs" aria-label="Point 1 : Sélecteurs"><b>1</b><span class="lbl"><span class="l-long">Sélecteurs</span><span class="l-short">Sélecteurs</span></span></a></li><li><a href="#point-2" title="Texte" aria-label="Point 2 : Texte"><b>2</b><span class="lbl"><span class="l-long">Texte</span><span class="l-short">Texte</span></span></a></li><li><a href="#point-3" title="Arrière-plan" aria-label="Point 3 : Arrière-plan"><b>3</b><span class="lbl"><span class="l-long">Arrière-plan</span><span class="l-short">Fond</span></span></a></li><li><a href="#point-4" title="Boîtes &amp; Display" aria-label="Point 4 : Boîtes &amp; Display"><b>4</b><span class="lbl"><span class="l-long">Boîtes &amp; Display</span><span class="l-short">Boîtes</span></span></a></li><li><a href="#point-5" title="Float, Position &amp; Flex" aria-label="Point 5 : Float, Position &amp; Flex"><b>5</b><span class="lbl"><span class="l-long">Float · Position &amp; Flex</span><span class="l-short">Float</span></span></a></li><li><a href="#point-6" title="Bordures" aria-label="Point 6 : Bordures"><b>6</b><span class="lbl"><span class="l-long">Bordures</span><span class="l-short">Bordures</span></span></a></li><li><a href="#point-7" title="Listes &amp; Tableaux" aria-label="Point 7 : Listes &amp; Tableaux"><b>7</b><span class="lbl"><span class="l-long">Listes &amp; Tableaux</span><span class="l-short">Listes</span></span></a></li><li><a href="#point-8" title="Transform &amp; Animations" aria-label="Point 8 : Transform &amp; Animations"><b>8</b><span class="lbl"><span class="l-long">Transform &amp; Animations</span><span class="l-short">Animations</span></span></a></li></ul></nav>
         <div class="header-actions">
           <a href="../index.html" class="btn-nav" title="Retour" aria-label="Retour">🏠</a>
           <a href="../documents/annexes/annexe-css3.pdf" target="_blank" class="btn-nav" title="Annexe CSS3 PDF" aria-label="Annexe CSS3 PDF">📄</a>
@@ -672,7 +716,7 @@
       <div class="progress" aria-hidden="true"><i></i></div>
     </header>
     <div class="intro">
-      <p>Sélecteurs &amp; Priorités · Typographie · Arrière-plan · Boîtes · Position &amp; Flex · Transition · Animations</p>
+      <p>Sélecteurs &amp; Priorités · Typographie · Arrière-plan · Boîtes · Float · Position &amp; Flex · Transition · Animations</p>
       <p class="credit">Travail élaboré par <b>A. Essouyah</b></p>
     </div>
 
@@ -1071,10 +1115,10 @@
         </div>
       </div>
 
-      <!-- ==================== 5. POSITIONNEMENT & FLEXBOX (ORIGINAL INTÉGRAL) ==================== -->
+      <!-- ==================== 5. FLOAT, POSITIONNEMENT & FLEXBOX ==================== -->
       <div class="section-label" id="point-5">
         <div class="dot"></div>
-        <span>5. Positionnement &amp; Flexbox</span>
+        <span>5. Float, Positionnement &amp; Flexbox</span>
       </div>
 
       <!-- RAPPEL : NATURE DES BALISES -->
@@ -1343,10 +1387,10 @@
         </div>
       </div>
 
-      <!-- LES 5 FICHES -->
+      <!-- LES 6 FICHES : FLOAT + 4 POSITIONS + FLEX -->
       <div class="section-label">
         <div class="dot"></div>
-        <span>Les 5 fiches — Position &amp; Flex</span>
+        <span>Les 6 fiches — Float, Position &amp; Flex</span>
       </div>
 
       <div class="grid">
@@ -1700,10 +1744,84 @@
           </p>
         </div>
 
-        <!-- FLEX -->
+        <!-- FLOAT -->
         <div class="card pos-c">
           <div class="card-head">
             <div class="num">5</div>
+            <h2>Float &amp; clear</h2>
+          </div>
+          <div><code>float: left | right | none</code></div>
+          <p
+            style="
+              font-size: 12.5px;
+              line-height: 1.5;
+              color: #1c2440;
+              margin: 0;
+            "
+          >
+            Place un élément sur le bord gauche ou droit de son conteneur ; le
+            texte s'enroule autour.
+          </p>
+          <div class="win-btns">
+            <button type="button" class="btn-detail" data-win="win-float">
+              🔍 Détailler float et essayer la démo
+            </button>
+          </div>
+          <ul class="keypoints">
+            <li>
+              <span class="ico">✅</span> <code>float: left</code> place à
+              gauche ; <code>float: right</code> place à droite.
+            </li>
+            <li>
+              <span class="ico">✅</span> Le texte et les éléments en ligne
+              s'enroulent autour du flottant.
+            </li>
+            <li>
+              <span class="ico">✅</span> <code>clear: left</code>,
+              <code>right</code> ou <code>both</code> force le bloc suivant à
+              passer sous le flottant.
+            </li>
+            <li>
+              <span class="ico">⚠️</span> Le float sort du flux normal, mais le
+              texte l'évite — contrairement à <code>position: absolute</code>.
+            </li>
+            <li>
+              <span class="ico">⭐</span> Idéal pour habiller une image dans un
+              texte ; pour la mise en page générale, préférez Flexbox ou Grid.
+            </li>
+          </ul>
+          <div class="demo-label">&lt;/&gt; Exemple CSS</div>
+          <div class="codebox">
+            <span class="s">.image</span> {<br />
+            &nbsp;&nbsp;<span class="k">float</span>:
+            <span class="v">left</span>;<br />
+            &nbsp;&nbsp;<span class="k">margin</span>:
+            <span class="v">0 12px 8px 0</span>;<br />
+            }<br />
+            <span class="s">.suite</span> {
+            <span class="k">clear</span>: <span class="v">both</span>; }
+          </div>
+          <div class="demo-label">👁 Résultat — texte enveloppant</div>
+          <div class="demo float-demo">
+            <div class="float-box">float:<br />left</div>
+            <p style="margin: 0">
+              Le texte passe à côté de cet élément flottant, puis occupe toute
+              la largeur disponible lorsqu'il l'a dépassé.
+            </p>
+            <p class="float-clear">
+              <code>clear: both</code> — ce bloc commence sous le flottant.
+            </p>
+          </div>
+          <p style="font-size: 11px; color: #5b6584; margin: 0">
+            Pour qu'un conteneur englobe ses enfants flottants, utilisez
+            <code>display: flow-root</code>.
+          </p>
+        </div>
+
+        <!-- FLEX -->
+        <div class="card pos-c">
+          <div class="card-head">
+            <div class="num">6</div>
             <h2>Display flex</h2>
           </div>
           <div><code>display: flex</code></div>
@@ -1808,7 +1926,7 @@
       </div>
 
       <div class="table-wrap">
-        <p class="table-title">⚖️ Comparaison des 5 comportements</p>
+        <p class="table-title">⚖️ Comparaison de 6 notions CSS</p>
         <table>
           <thead>
             <tr>
@@ -1817,6 +1935,7 @@
               <th style="background: #d6336c">absolute</th>
               <th style="background: #d6336c">fixed</th>
               <th style="background: #d6336c">sticky</th>
+              <th style="background: #d6336c">float</th>
               <th style="background: #d6336c">flex</th>
             </tr>
           </thead>
@@ -1827,6 +1946,7 @@
               <td>❌ Non</td>
               <td>❌ Non</td>
               <td>✅ Oui</td>
+              <td>❌ Non*</td>
               <td>✅ Oui</td>
             </tr>
             <tr>
@@ -1835,6 +1955,7 @@
               <td>parent positionné le plus proche</td>
               <td>la fenêtre (viewport)</td>
               <td>son conteneur + seuil de scroll</td>
+              <td>bord gauche/droit du conteneur</td>
               <td>— (organise ses enfants)</td>
             </tr>
             <tr>
@@ -1844,6 +1965,7 @@
               <td>Selon le placement</td>
               <td>✅ Oui (au moins un)</td>
               <td>❌ Non</td>
+              <td>❌ Non</td>
             </tr>
             <tr>
               <td class="crit">📌 Reste visible au défilement ?</td>
@@ -1851,6 +1973,7 @@
               <td>❌ Non</td>
               <td>✅ Oui</td>
               <td>✅ Oui, une fois collé</td>
+              <td>❌ Non</td>
               <td>— Non concerné</td>
             </tr>
             <tr>
@@ -1859,6 +1982,7 @@
               <td>✅ Oui</td>
               <td>✅ Oui</td>
               <td>✅ Oui</td>
+              <td>❌ Non*</td>
               <td>— Non concerné</td>
             </tr>
             <tr>
@@ -1867,15 +1991,19 @@
               <td>badges, tooltips, superposition</td>
               <td>barre de navigation fixe</td>
               <td>en-tête de tableau, titre collant</td>
+              <td>image avec texte qui l'entoure</td>
               <td>menus, cartes, formulaires alignés</td>
             </tr>
           </tbody>
         </table>
         <p class="footnote">
-          ℹ️ <code>flex</code> n'est pas une valeur de
-          <code>position</code> mais une valeur de <code>display</code> : elle
-          est ajoutée ici car souvent confondue avec les positions pour
-          organiser une mise en page.
+          ℹ️ * Un élément <code>float</code> est retiré du flux normal sans être
+          « positionné » : les lignes de texte le contournent, mais
+          <code>z-index</code> ne s'y applique pas. <code>clear</code> force un
+          bloc à passer dessous. <code>float</code> sert surtout à habiller une
+          image avec du texte. <code>flex</code> n'est pas une valeur de
+          <code>position</code>, mais de <code>display</code> : elle organise
+          les enfants d'un conteneur.
         </p>
       </div>
 
@@ -1900,7 +2028,11 @@
               se colle au seuil.
             </li>
             <li>
-              <span class="ico">5️⃣</span><b>FLEX</b> → organise et aligne les
+              <span class="ico">5️⃣</span><b>FLOAT</b> → place un élément à
+              gauche/droite et laisse le texte l'entourer.
+            </li>
+            <li>
+              <span class="ico">6️⃣</span><b>FLEX</b> → organise et aligne les
               enfants.
             </li>
           </ul>
@@ -1914,6 +2046,10 @@
           <p style="font-size: 12.5px; line-height: 1.5; margin: 0 0 8px">
             <b>absolute</b> = pense d'abord au parent positionné, souvent
             <b>relative</b>.
+          </p>
+          <p style="font-size: 12.5px; line-height: 1.5; margin: 0 0 8px">
+            <b>float</b> = le texte contourne l'élément ; <code>clear</code> fait
+            commencer le bloc suivant en dessous.
           </p>
           <p style="font-size: 12.5px; line-height: 1.5; margin: 0">
             <b>flex</b> = organisation des enfants, pas une position de
@@ -2299,6 +2435,47 @@
       </footer>
     </div>
 
+<template id="win-float" data-title="float — habiller un texte autour d'une image">
+  <p>
+    <code>float</code> pousse une boîte vers le bord gauche ou droit du conteneur.
+    Les lignes de texte qui suivent se réorganisent pour l'entourer.
+  </p>
+  <div class="codebox">float: left;   /* l'élément flotte à gauche */
+float: right;  /* il flotte à droite */
+float: none;   /* comportement normal */</div>
+  <h3>Exemple concret : une photo dans un article</h3>
+  <p>Utilisez les boutons pour déplacer l'image. Observez le paragraphe : il s'enroule autour de l'image à gauche ou à droite, puis reprend toute la largeur en dessous.</p>
+  <div data-demo="float">
+    <div class="seg" role="group" aria-label="Choisir la position de l'image flottante">
+      <label><input type="radio" name="float-position-demo" value="left" checked><span>Float à gauche</span></label>
+      <label><input type="radio" name="float-position-demo" value="right"><span>Float à droite</span></label>
+      <label><input type="radio" name="float-position-demo" value="none"><span>Sans float</span></label>
+    </div>
+    <div class="float-stage">
+      <div class="float-photo" style="float:left" role="img" aria-label="Photo décorative"><span>PHOTO</span></div>
+      <p class="float-copy">
+        Samedi dernier, notre classe a visité le jardin botanique. Le guide nous
+        a présenté les plantes locales et expliqué comment elles poussent au fil
+        des saisons. Dans un article, une photo peut flotter sur un côté pendant
+        que le texte l'entoure naturellement. Essayez de la déplacer à droite,
+        puis choisissez « Sans float » pour comparer le résultat.
+      </p>
+      <p class="float-clear"><b>La suite de l'article</b> — ce paragraphe utilise <code>clear: both</code> : il commence sous l'image, quel que soit le côté où elle flotte.</p>
+    </div>
+    <div class="codebox out">float: left;
+margin: 0 14px 8px 0;</div>
+  </div>
+  <h3>À retenir</h3>
+  <ul class="keypoints">
+    <li><span class="ico">🔹</span> <code>float: left</code> et <code>float: right</code> règlent le côté ; ajoutez souvent une marge pour séparer le texte.</li>
+    <li><span class="ico">🔹</span> <code>clear: both</code> empêche le bloc suivant de se placer à côté des flottants.</li>
+    <li><span class="ico">🔹</span> Si le parent doit englober ses enfants flottants, utilisez <code>display: flow-root</code> sur le parent.</li>
+    <li><span class="ico">⭐</span> <code>float</code> est surtout utile pour l'habillage d'images et de texte ; pour des colonnes ou des cartes, préférez Flexbox ou Grid.</li>
+  </ul>
+  <div class="codebox">.photo { float: left; margin: 0 14px 8px 0; }
+.suite-article { clear: both; }
+.article { display: flow-root; } /* le parent contient le flottant */</div>
+</template>
 <template id="win-text-shadow" data-title="text-shadow — ombre du texte"><p>Le même principe que box-shadow, appliqué aux lettres. Attention : pas d'étendue, pas d'inset. Manipulez les valeurs : le code CSS se met à jour en direct.</p><h3>Laboratoire</h3><div class="slab tslab"><div class="stage"><p class="tbox">Ombre</p></div><div class="slab-controls"><div class="ctl"><label>Décalage X</label><input type="range" data-k="x" min="-20" max="20" value="3"><output>3 px</output></div><div class="ctl"><label>Décalage Y</label><input type="range" data-k="y" min="-20" max="20" value="4"><output>4 px</output></div><div class="ctl"><label>Flou</label><input type="range" data-k="blur" min="0" max="30" value="6"><output>6 px</output></div><div class="ctl"><label>Opacité</label><input type="range" data-k="alpha" min="0" max="100" value="40"><output>40 %</output></div><div class="ctl"><label>Couleur</label><input type="color" data-k="color" value="#211f38"><output></output></div></div><pre class="codebox out">text-shadow: 3px 4px 6px rgba(33,31,56,.4);</pre><button type="button" class="copy-btn">Copier le CSS</button></div><h3>La syntaxe</h3><div class="codebox">text-shadow: X Y flou couleur;</div><p>Mêmes valeurs que <code>box-shadow</code>, sans étendue ni <code>inset</code>. Plusieurs ombres se séparent par des virgules ; la première est dessinée au-dessus.</p><h3>Exemples</h3><div class="sgrid"><div class="sdemo"><div class="tx" style="background:#d9d6ec;color:#211f38" data-css="2px 2px 4px rgba(33,31,56,.4)">Aa</div><b>Ombre douce</b><small></small></div><div class="sdemo"><div class="tx" style="background:#d9d6ec;color:#d9d6ec" data-css="0 -1px 1px #211f38, 0 1px 1px #fff">Aa</div><b>Gravé (letterpress)</b><small></small></div><div class="sdemo"><div class="tx" style="background:#12102a;color:#fff" data-css="0 0 6px #fff, 0 0 14px #5b4bff, 0 0 28px #5b4bff">Aa</div><b>Néon</b><small></small></div><div class="sdemo"><div class="tx" style="background:#d9d6ec;color:#fff" data-css="-1px -1px 0 #211f38, 1px -1px 0 #211f38, -1px 1px 0 #211f38, 1px 1px 0 #211f38">Aa</div><b>Contour</b><small></small></div><div class="sdemo"><div class="tx" style="background:#d9d6ec;color:#5b4bff" data-css="1px 1px 0 #211f38, 2px 2px 0 #211f38, 3px 3px 0 #211f38, 4px 4px 0 #211f38">Aa</div><b>Relief 3D</b><small></small></div><div class="sdemo"><div class="tx" style="background:#5b4bff;color:#fff" data-css="0 2px 10px rgba(0,0,0,.45)">Aa</div><b>Lisibilité sur fond vif</b><small></small></div></div><h3>À savoir</h3><ul class="keypoints"><li><span class="ico">🔹</span> <b>Le flou est plus visible sur du texte fin.</b> Gardez des valeurs faibles pour le texte courant ; réservez les grandes ombres aux titres.</li><li><span class="ico">🔹</span> <b>Un contour avec 4 ombres</b> est simple mais irrégulier aux angles. La propriété <code>-webkit-text-stroke</code> est plus propre, mais moins standard.</li><li><span class="ico">🔹</span> <b>Le texte transparent garde son ombre</b> (<code>color: transparent</code>), ce qui permet de n'afficher que l'ombre.</li><li><span class="ico">🔹</span> <b>Coût de rendu.</b> Un grand nombre d'ombres superposées sur beaucoup de texte ralentit l'affichage.</li><li><span class="ico">🔹</span> <b>Contraste.</b> Une ombre ne remplace pas un contraste suffisant entre le texte et le fond.</li></ul></template>
 <template id="win-bg-color" data-title="background-color — couleur de fond"><p>Colore le fond d'un élément (contenu + padding, jusque sous la bordure).</p><div class="codebox">background-color: valeur;</div><h3>Formats acceptés</h3><div class="row"><div class="dm" style="background:tomato">tomato</div><div class="dm" style="background:#29abe2">#29abe2</div><div class="dm" style="background:rgb(41,171,226)">rgb()</div><div class="dm" style="background:rgba(41,171,226,.4);color:#1c2440">rgba() .4</div>
   </div><div class="codebox">background-color: tomato;             /* mot-clé */
@@ -2344,8 +2521,8 @@ a:active  { color: #d6336c; font-weight: bold; }           /* A : cliqué */</di
       <div id="win" role="dialog" aria-modal="true" aria-labelledby="win-title">
         <div class="win-bar" id="win-bar">
           <h2 id="win-title"></h2>
-          <button type="button" id="win-max" aria-label="Agrandir ou restaurer" title="Agrandir / restaurer">⤢</button>
-          <button type="button" id="win-close" aria-label="Fermer" title="Fermer">✕</button>
+          <button type="button" id="win-max" aria-label="Agrandir la fenêtre" aria-pressed="false" title="Agrandir">⤢</button>
+          <button type="button" id="win-close" aria-label="Fermer et revenir à la fiche" title="Fermer et revenir à la fiche">✕</button>
         </div>
         <div class="win-body" id="win-body"></div>
       </div>
@@ -2356,26 +2533,55 @@ a:active  { color: #d6336c; font-weight: bold; }           /* A : cliqué */</di
         var ov = document.getElementById("win-overlay"), w = document.getElementById("win"),
             body = document.getElementById("win-body"), ttl = document.getElementById("win-title"),
             bar = document.getElementById("win-bar"), last = null, d = null;
+        function setMaximized(maximized) {
+          maximized = Boolean(maximized);
+          w.classList.toggle("max", maximized);
+          var button = document.getElementById("win-max");
+          button.textContent = maximized ? "⤡" : "⤢";
+          button.title = maximized ? "Réduire" : "Agrandir";
+          button.setAttribute(
+            "aria-label",
+            maximized ? "Réduire la fenêtre" : "Agrandir la fenêtre"
+          );
+          button.setAttribute("aria-pressed", maximized ? "true" : "false");
+        }
+        function centerWindow() {
+          w.style.left = Math.max(8, (ov.clientWidth - w.offsetWidth) / 2) + "px";
+          w.style.top = Math.max(8, (ov.clientHeight - w.offsetHeight) / 2) + "px";
+        }
         function open(id, btn) {
           var t = document.getElementById(id); if (!t) return;
           last = btn; ttl.textContent = t.dataset.title;
           body.innerHTML = ""; body.appendChild(t.content.cloneNode(true));
           initShadowDemos(body);
-          w.classList.remove("max"); ov.classList.add("open"); document.body.style.overflow = "hidden";
-          w.style.left = Math.max(8, (ov.clientWidth - w.offsetWidth) / 2) + "px";
-          w.style.top = Math.max(8, (ov.clientHeight - w.offsetHeight) / 2) + "px";
+          setMaximized(false);
+          ov.classList.add("open"); document.body.style.overflow = "hidden";
+          centerWindow();
           body.scrollTop = 0; document.getElementById("win-close").focus();
         }
         function close() {
-          ov.classList.remove("open"); document.body.style.overflow = ""; body.innerHTML = "";
+          ov.classList.remove("open"); setMaximized(false);
+          document.body.style.overflow = ""; body.innerHTML = "";
           if (last) last.focus();
         }
         document.addEventListener("click", function (e) {
           var b = e.target.closest("[data-win]");
           if (b) { open(b.dataset.win, b); return; }
           if (e.target === ov || e.target.closest("#win-close")) close();
-          else if (e.target.closest("#win-max")) w.classList.toggle("max");
+          else if (e.target.closest("#win-max")) {
+            var willMaximize = !w.classList.contains("max");
+            setMaximized(willMaximize);
+            if (!willMaximize) centerWindow();
+          }
         });
+        window.addEventListener("resize", function () {
+          if (ov.classList.contains("open") && !w.classList.contains("max")) centerWindow();
+        });
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener("resize", function () {
+            if (ov.classList.contains("open") && !w.classList.contains("max")) centerWindow();
+          });
+        }
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape" && ov.classList.contains("open")) close();
         });
@@ -2430,6 +2636,21 @@ a:active  { color: #d6336c; font-weight: bold; }           /* A : cliqué */</di
           } else if (kind === "bgsize") {
             w.querySelector(".tile-demo").style.backgroundSize = e.target.value;
             out.textContent = "background-size: " + e.target.value + ";";
+          } else if (kind === "float") {
+            var floatValue = e.target.value;
+            var floatPhoto = w.querySelector(".float-photo");
+            if (!floatPhoto || ["left", "right", "none"].indexOf(floatValue) === -1) return;
+            floatPhoto.style.float = floatValue;
+            if (floatValue === "right") {
+              floatPhoto.style.margin = "0 0 8px 14px";
+              out.textContent = "float: right;\nmargin: 0 0 8px 14px;";
+            } else if (floatValue === "left") {
+              floatPhoto.style.margin = "0 14px 8px 0";
+              out.textContent = "float: left;\nmargin: 0 14px 8px 0;";
+            } else {
+              floatPhoto.style.margin = "0 0 8px";
+              out.textContent = "float: none;";
+            }
           }
         });
         /* ===== Labos box-shadow / text-shadow ===== */
@@ -2474,7 +2695,7 @@ a:active  { color: #d6336c; font-weight: bold; }           /* A : cliqué */</di
         });
       })();
     </script>
-  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a42ba6a7cb655264',t:'MTc5MDY5MTg2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a42ba6a7cb655264',t:'MTc5MDY5MTg2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a446b571cffdb870',t:'MTc5MDk3NTU4Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
     </script>
       <button type="button" id="to-top" aria-label="Remonter en haut de la page" title="Remonter en haut"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg></button>
