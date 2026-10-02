@@ -83,3 +83,4 @@ STI-By-A.Essouyah/
 Site statique : ouvrir `index.html` dans un navigateur, ou servir le dossier avec
 n'importe quel serveur web (GitHub Pages, Netlify, Apache, Nginx…).
 Les fichiers `.php` du projet `fleurs` nécessitent un serveur PHP + MySQL.
+"# STI-By-AE-Version1.2" 
