@@ -4,141 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="../assets/icons/STI_by_AE.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cours & Fiche Révision HTML5 - Le Fleuriste du Rafèha</title>
-    <!-- CSS local (Tailwind compilé + Font Awesome) : fonctionne hors ligne -->
-    <link rel="stylesheet" href="../assets/css/tailwind.css" />
-    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
-    <style>
-      .code-block {
-        font-family: "Fira Code", "Courier New", Courier, monospace;
-      }
-      /* Le bouton ⛶ agrandit la boîte de détails à tout l'écran. */
-      #modal-overlay.modal-maximized {
-        padding: 0 !important;
-      }
-      #modal-overlay.modal-maximized #modal-window {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        max-height: 100vh !important;
-        max-height: 100dvh !important;
-        min-height: 100vh !important;
-        min-height: 100dvh !important;
-        border-radius: 0 !important;
-        resize: none !important;
-      }
-      /* ===== Mobile : menu déclenché par le logo ===== */
-      @media (max-width: 767px) {
-        #sidebar {
-          display: none;
-          position: fixed;
-          top: 65px;
-          left: 0;
-          right: 0;
-          z-index: 45;
-          padding: 0.5rem 0.75rem 1rem;
-          max-height: calc(100vh - 65px);
-          max-height: calc(100dvh - 65px);
-          overflow-y: auto;
-        }
-        #sidebar.menu-open {
-          display: block;
-          animation: menuIn 0.18s ease-out;
-        }
-        #sidebar > div {
-          position: static !important;
-          box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.4);
-        }
-      }
-      @keyframes menuIn {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      #menuCaret {
-        transition: transform 0.2s;
-      }
-
-      /* ===== Fine barre de niveau en bas du header ===== */
-      #levelBar {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 4px;
-        display: flex;
-        gap: 2px;
-        background: #fff;
-        pointer-events: none;
-      }
-      #levelBar span {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-        background: #e2e8f0;
-      }
-      #levelBar span i {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        background: #16a34a;
-        transition: width 0.15s linear;
-      }
-      #levelBar span.is-active i {
-        background: linear-gradient(90deg, #f59e0b, #f97316);
-      }
-
-      /* Lien actif dans le plan du cours */
-      #sidebar nav a.is-active {
-        background: #f0fdf4;
-        color: #15803d;
-        font-weight: 700;
-        box-shadow: inset 3px 0 0 #f59e0b;
-      }
-
-      /* ===== Bouton « haut de page » ===== */
-      #backToTop {
-        position: fixed;
-        right: 1.25rem;
-        bottom: 1.25rem;
-        z-index: 40;
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: 9999px;
-        background: #16a34a;
-        color: #fff;
-        border: 0;
-        box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(1rem);
-        pointer-events: none;
-        transition: opacity 0.25s, transform 0.25s, background 0.2s;
-      }
-      #backToTop.show {
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-      #backToTop:hover {
-        background: #15803d;
-      }
-      #backToTop:focus-visible {
-        outline: 3px solid #f59e0b;
-        outline-offset: 2px;
-      }
-    </style>
+    <title>Cours &amp; Fiche Révision HTML5</title>
+    <link rel="stylesheet" href="../assets/css/html.css" />
   </head>
   <body class="bg-slate-50 text-slate-800 font-sans antialiased">
     <!-- Header Navigation -->
@@ -185,11 +52,17 @@
               >🏠<span class="hidden sm:inline">Retour</span></a
             >
             <a
-              href="../documents/annexes/annexe-html5.pdf"
+              id="lienAnnexePdf"
+              href="../documents/annexes/annexe-html5.pdf#annexe-html5"
               target="_blank"
+              rel="noopener"
+              title="Ouvrir l'annexe HTML5 (PDF) — un lien de retour vers ce cours figure en bas de la dernière page"
               class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors"
             >
-              <i class="fa-solid fa-file-pdf text-red-600"></i>
+              <i
+                class="fa-solid fa-file-pdf text-red-600"
+                data-fa="fa-file-pdf"
+              ></i>
               <span class="hidden sm:inline">Annexe PDF</span>
             </a>
             <div class="relative">
@@ -291,6 +164,13 @@
             >
               <i class="fa-solid fa-pen-to-square text-brand-600 w-4"></i>
               Formulaires &amp; Inputs
+            </a>
+            <a
+              href="#iframe"
+              class="flex items-center gap-2 px-3 py-2 text-slate-800 bg-slate-100 hover:bg-slate-300 rounded-lg transition-colors font-semibold"
+            >
+              <i class="fa-solid fa-display text-slate-500 w-4"></i>
+              Intégrer une page : <code>&lt;iframe&gt;</code>
             </a>
           </nav>
         </div>
@@ -588,6 +468,9 @@
                   <td class="px-4 py-3">
                     Définit un cadre en ligne pour intégrer une autre page HTML
                     (<code>src</code>, <code>name</code>, <code>target</code>).
+                    <a href="#iframe" class="text-brand-700 font-semibold"
+                      >Voir la section 10</a
+                    >
                   </td>
                 </tr>
               </tbody>
@@ -1535,7 +1418,9 @@
                 <p class="text-slate-600">
                   À distinguer de <code>action</code> (adresse de traitement) et
                   <code>method</code> (envoi en <code>get</code> ou
-                  <code>post</code>).
+                  <code>post</code>). Voir la section 10 pour l'élément
+                  <code>&lt;iframe&gt;</code>, la cible la plus fréquente de
+                  <code>target</code>.
                 </p>
               </div>
               <button
@@ -2230,13 +2115,520 @@
             </div>
           </div>
         </section>
+
+        <!-- 10. L'ÉLÉMENT IFRAME : INTÉGRER UNE PAGE DANS UNE AUTRE -->
+        <section id="iframe" class="scroll-mt-20">
+          <h2
+            class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-200 pb-2"
+          >
+            <span class="bg-brand-100 text-brand-700 p-1.5 rounded-md text-sm"
+              ><i class="fa-solid fa-display"></i
+            ></span>
+            10. Intégrer une page dans une autre : <code>&lt;iframe&gt;</code>
+          </h2>
+
+          <p class="text-xs sm:text-sm text-slate-600 mb-6">
+            L'élément
+            <code
+              class="font-bold text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded"
+              >&lt;iframe&gt;</code
+            >
+            (<em>inline frame</em>, « cadre en ligne ») permet d'<strong
+              >intégrer une page web dans une autre page</strong
+            >
+            : vidéo YouTube, carte Google Maps, formulaire externe, document… Le
+            contenu intégré est une page complète, chargée dans un contexte de
+            navigation isolé, comme un écran posé dans la page.
+          </p>
+
+          <!-- Syntaxe de base -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6"
+          >
+            <div
+              class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+            >
+              Syntaxe de base
+            </div>
+            <pre
+              class="p-4 bg-slate-900 text-slate-200 text-xs sm:text-sm code-block overflow-x-auto"
+            ><code>&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"https://exemple.com"</span> <span class="text-amber-300">width</span>=<span class="text-emerald-300">"600"</span> <span class="text-amber-300">height</span>=<span class="text-emerald-300">"400"</span> <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Exemple"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+          </div>
+
+          <!-- Tableau des attributs principaux -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto mb-6"
+          >
+            <div
+              class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+            >
+              Attributs principaux
+            </div>
+            <table class="w-full text-xs sm:text-sm text-left">
+              <thead class="bg-slate-50 text-slate-700 uppercase font-semibold">
+                <tr>
+                  <th class="px-4 py-3 border-b">Attribut</th>
+                  <th class="px-4 py-3 border-b">Rôle</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 text-slate-600">
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    src
+                  </td>
+                  <td class="px-4 py-2.5">URL de la page à afficher.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    srcdoc
+                  </td>
+                  <td class="px-4 py-2.5">
+                    HTML écrit directement dans l'attribut (remplace
+                    <code>src</code>).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    width / height
+                  </td>
+                  <td class="px-4 py-2.5">Dimensions (en pixels ou %).</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    title
+                  </td>
+                  <td class="px-4 py-2.5">
+                    Description pour l'accessibilité (recommandé).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    name
+                  </td>
+                  <td class="px-4 py-2.5">
+                    Nom de la <em>frame</em>, utilisable comme cible d'un lien
+                    (<code>target</code>).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    loading="lazy"
+                  </td>
+                  <td class="px-4 py-2.5">
+                    Charge l'iframe seulement quand elle devient visible.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    sandbox
+                  </td>
+                  <td class="px-4 py-2.5">
+                    Restreint les droits du contenu intégré (sécurité).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    allow
+                  </td>
+                  <td class="px-4 py-2.5">
+                    Autorise des fonctions (caméra, plein écran, etc.).
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2.5 font-mono font-bold text-brand-700">
+                    allowfullscreen
+                  </td>
+                  <td class="px-4 py-2.5">Autorise le mode plein écran.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Exemples utiles -->
+          <h3
+            class="font-bold text-sm sm:text-base text-slate-800 mb-3 flex items-center gap-2"
+          >
+            <i class="fa-solid fa-code text-brand-600"></i> Exemples utiles
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <!-- Vidéo YouTube -->
+            <div
+              class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+            >
+              <div
+                class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+              >
+                Vidéo YouTube
+              </div>
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto"
+              ><code>&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">width</span>=<span class="text-emerald-300">"560"</span> <span class="text-amber-300">height</span>=<span class="text-emerald-300">"315"</span>
+        <span class="text-amber-300">src</span>=<span class="text-emerald-300">"https://www.youtube.com/embed/ID_VIDEO"</span>
+        <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Vidéo"</span> <span class="text-amber-300">allowfullscreen</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+              <p class="text-xs text-slate-500 p-3">
+                Utilisez l'adresse <code>/embed/ID_VIDEO</code> du bouton «
+                Partager → Intégrer », pas l'adresse normale de la vidéo.
+              </p>
+            </div>
+
+            <!-- Google Maps -->
+            <div
+              class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+            >
+              <div
+                class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+              >
+                Carte Google Maps
+              </div>
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto"
+              ><code>&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"https://www.google.com/maps/embed?pb=..."</span>
+        <span class="text-amber-300">width</span>=<span class="text-emerald-300">"600"</span> <span class="text-amber-300">height</span>=<span class="text-emerald-300">"450"</span> <span class="text-amber-300">loading</span>=<span class="text-emerald-300">"lazy"</span>
+        <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Carte"</span> <span class="text-amber-300">allowfullscreen</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+              <p class="text-xs text-slate-500 p-3">
+                Même principe : copiez le code fourni par Google Maps via «
+                Partager → Intégrer une carte ».
+              </p>
+            </div>
+
+            <!-- Lien dans l'iframe -->
+            <div
+              class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+            >
+              <div
+                class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+              >
+                Lien qui s'ouvre dans l'iframe
+              </div>
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto"
+              ><code>&lt;<span class="text-pink-400">a</span> <span class="text-amber-300">href</span>=<span class="text-emerald-300">"page2.html"</span> <span class="text-amber-300">target</span>=<span class="text-emerald-300">"cadre"</span>&gt;Ouvrir la page 2&lt;/<span class="text-pink-400">a</span>&gt;
+&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">name</span>=<span class="text-emerald-300">"cadre"</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"page1.html"</span> <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Cadre"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+              <p class="text-xs text-slate-500 p-3">
+                Le <code>target</code> du lien porte exactement le
+                <code>name</code> de l'iframe : la page 2 s'affiche dans le
+                cadre, la page principale ne change pas (voir la section 8).
+              </p>
+            </div>
+
+            <!-- srcdoc -->
+            <div
+              class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+            >
+              <div
+                class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+              >
+                Contenu direct avec srcdoc
+              </div>
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto"
+              ><code>&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">srcdoc</span>=<span class="text-emerald-300">"&lt;h1&gt;Bonjour&lt;/h1&gt;&lt;p&gt;Contenu intégré&lt;/p&gt;"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+              <p class="text-xs text-slate-500 p-3">
+                Aucun fichier externe : le HTML est écrit dans l'attribut. Les
+                guillemets internes doivent être échappés
+                (<code>&amp;quot;</code>) ou remplacés par des apostrophes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Iframe responsive -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6"
+          >
+            <div
+              class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+            >
+              Iframe responsive (ratio 16:9)
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-xs sm:text-sm code-block overflow-x-auto"
+              ><code><span class="text-pink-400">iframe</span> {
+  <span class="text-amber-300">width</span>: <span class="text-emerald-300">100%</span>;
+  <span class="text-amber-300">aspect-ratio</span>: <span class="text-emerald-300">16 / 9</span>;
+  <span class="text-amber-300">border</span>: <span class="text-emerald-300">0</span>;
+}</code></pre>
+              <div class="p-4 text-xs sm:text-sm text-slate-600 bg-slate-50">
+                <p class="mb-2">
+                  Avec <code>width: 100%</code> et
+                  <code>aspect-ratio: 16 / 9</code>, l'iframe garde les bonnes
+                  proportions sur mobile comme sur grand écran : plus besoin de
+                  fixer <code>width</code> et <code>height</code> en pixels.
+                </p>
+                <p>
+                  <code>border: 0</code> remplace l'ancien attribut
+                  <code>frameborder</code>, aujourd'hui obsolète.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sécurité -->
+          <div
+            class="bg-amber-50/60 border border-amber-200 rounded-xl p-5 shadow-sm mb-6"
+          >
+            <h3
+              class="font-bold text-sm sm:text-base text-amber-900 mb-3 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-lock"></i> Sécurité
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-700 mb-2">
+              Une iframe affiche du code que vous ne contrôlez pas : utilisez
+              <code
+                class="font-bold text-amber-900 bg-amber-100 px-1.5 py-0.5 rounded"
+                >sandbox</code
+              >
+              pour restreindre les droits du contenu intégré.
+            </p>
+            <pre
+              class="p-3 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto rounded-lg mb-3"
+            ><code>&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"page.html"</span> <span class="text-amber-300">sandbox</span>=<span class="text-emerald-300">"allow-scripts"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+            <ul
+              class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 mb-3"
+            >
+              <li>
+                <code>sandbox=""</code> (vide) : restrictions maximales, rien
+                n'est autorisé.
+              </li>
+              <li>
+                <code>allow-scripts</code> : autorise le JavaScript du contenu ;
+                <code>allow-forms</code>, <code>allow-popups</code> et
+                <code>allow-modals</code> autorisent formulaires, fenêtres
+                surgissantes et boîtes de dialogue.
+              </li>
+              <li>
+                Évitez de combiner <code>allow-scripts</code> et
+                <code>allow-same-origin</code> pour du contenu non fiable : le
+                cadre pourrait alors sortir de ses restrictions.
+              </li>
+            </ul>
+
+            <p class="text-xs sm:text-sm text-slate-700 mb-2">
+              Beaucoup de sites interdisent l'intégration via les en-têtes
+              <code>X-Frame-Options</code> ou
+              <code>Content-Security-Policy: frame-ancestors</code> (l'iframe
+              reste alors vide). Pour protéger votre propre site contre le
+              <em>clickjacking</em>, utilisez ces mêmes en-têtes :
+            </p>
+            <pre
+              class="p-3 bg-slate-900 text-slate-200 text-[11px] code-block overflow-x-auto rounded-lg"
+            ><code>X-Frame-Options: DENY
+Content-Security-Policy: frame-ancestors 'self'</code></pre>
+          </div>
+
+          <!-- Bonnes pratiques -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6"
+          >
+            <div
+              class="p-3 bg-slate-100 font-bold text-xs uppercase text-slate-700 border-b"
+            >
+              Bonnes pratiques
+            </div>
+            <ul
+              class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 p-4"
+            >
+              <li>
+                Toujours ajouter <code>title</code> (accessibilité : les
+                lecteurs d'écran annoncent le contenu du cadre).
+              </li>
+              <li>
+                Ajouter <code>loading="lazy"</code> pour les iframes situées en
+                bas de page (gain de vitesse).
+              </li>
+              <li>
+                Éviter les iframes pour la structure d'un site : préférer des
+                <em>includes</em> PHP ou des composants.
+              </li>
+              <li>
+                Ne pas utiliser <code>frameborder</code> (obsolète) : utiliser
+                <code>border: 0</code> en CSS.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Exemple Interactif : Iframe -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+          >
+            <div class="flex border-b border-slate-200 bg-slate-50 px-4">
+              <button
+                onclick="switchTab('iframe-demo', 'code')"
+                id="iframe-demo-btn-code"
+                class="px-4 py-2.5 text-xs font-semibold text-brand-700 border-b-2 border-brand-600 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-code"></i> Code HTML (Iframes)
+              </button>
+              <button
+                onclick="switchTab('iframe-demo', 'preview')"
+                id="iframe-demo-btn-preview"
+                class="px-4 py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-700 flex items-center gap-2"
+              >
+                <i class="fa-solid fa-eye"></i> Aperçu Visuel
+              </button>
+            </div>
+
+            <div id="iframe-demo-code">
+              <pre
+                class="p-4 bg-slate-900 text-slate-200 text-xs sm:text-sm code-block overflow-x-auto"
+              ><code>&lt;!-- 1. Contenu écrit directement : srcdoc --&gt;
+&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">srcdoc</span>=<span class="text-emerald-300">"&lt;h1&gt;Bonjour&lt;/h1&gt;&lt;p&gt;Contenu intégré&lt;/p&gt;"</span> <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Démo srcdoc"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;
+
+&lt;!-- 2. Vidéo YouTube en 16:9 responsive --&gt;
+&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"https://www.youtube.com/embed/ID_VIDEO"</span>
+        <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Vidéo"</span> <span class="text-amber-300">loading</span>=<span class="text-emerald-300">"lazy"</span> <span class="text-amber-300">allowfullscreen</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;
+
+&lt;!-- 3. Lien ouvert dans l'iframe : name + target --&gt;
+&lt;<span class="text-pink-400">a</span> <span class="text-amber-300">href</span>=<span class="text-emerald-300">"page2.html"</span> <span class="text-amber-300">target</span>=<span class="text-emerald-300">"cadre"</span>&gt;Ouvrir la page 2&lt;/<span class="text-pink-400">a</span>&gt;
+&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">name</span>=<span class="text-emerald-300">"cadre"</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"page1.html"</span> <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Cadre"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;
+
+&lt;!-- 4. Page externe (ou carte) intégrée --&gt;
+&lt;<span class="text-pink-400">iframe</span> <span class="text-amber-300">src</span>=<span class="text-emerald-300">"https://exemple.com"</span> <span class="text-amber-300">title</span>=<span class="text-emerald-300">"Site externe"</span> <span class="text-amber-300">loading</span>=<span class="text-emerald-300">"lazy"</span>&gt;&lt;/<span class="text-pink-400">iframe</span>&gt;</code></pre>
+            </div>
+
+            <div
+              id="iframe-demo-preview"
+              class="p-6 hidden bg-slate-50 space-y-4"
+            >
+              <div class="bg-white p-4 rounded-lg border border-slate-200">
+                <h4 class="font-bold text-sm text-slate-800 mb-2">
+                  1. Contenu direct (<code>srcdoc</code>) — fonctionne hors
+                  ligne
+                </h4>
+                <iframe
+                  title="Démo srcdoc"
+                  srcdoc="&lt;h2 style='font-family: sans-serif; color: #15803d; margin: 0 0 6px'&gt;Bonjour&lt;/h2&gt;&lt;p style='font-family: sans-serif; color: #475569; margin: 0'&gt;Contenu intégré directement dans l'attribut srcdoc.&lt;/p&gt;"
+                  style="
+                    width: 100%;
+                    height: 110px;
+                    border: 1px solid #cbd5e1;
+                    border-radius: 8px;
+                    background: #fff;
+                  "
+                ></iframe>
+              </div>
+
+              <div class="bg-white p-4 rounded-lg border border-slate-200">
+                <h4 class="font-bold text-sm text-slate-800 mb-2">
+                  2. Vidéo YouTube intégrée (cadre 16:9 responsive)
+                </h4>
+                <div
+                  style="
+                    width: 100%;
+                    aspect-ratio: 16 / 9;
+                    border: 1px solid #cbd5e1;
+                    border-radius: 8px;
+                    overflow: hidden;
+                  "
+                >
+                  <iframe
+                    src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+                    title="Vidéo YouTube intégrée"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    style="width: 100%; height: 100%; border: 0"
+                  ></iframe>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">
+                  Nécessite une connexion Internet ; ce type d'iframe reste vide
+                  si le réseau ou l'intégration sont bloqués.
+                </p>
+              </div>
+
+              <div class="bg-white p-4 rounded-lg border border-slate-200">
+                <h4 class="font-bold text-sm text-slate-800 mb-2">
+                  3. Liens qui s'ouvrent dans le cadre nommé (<code>name</code>
+                  + <code>target</code>)
+                </h4>
+                <p class="text-xs text-slate-500 mb-3">
+                  Démo simulée : dans un vrai projet, les liens pointeraient
+                  vers
+                  <code>page1.html</code> et <code>page2.html</code> avec
+                  <code>target="cadre"</code>. Ici, les deux pages sont écrites
+                  en JavaScript avec <code>srcdoc</code> pour l'aperçu.
+                </p>
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <button
+                    type="button"
+                    onclick="loadFrameDemo('page1')"
+                    class="px-3 py-1.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors"
+                  >
+                    Ouvrir page1.html
+                  </button>
+                  <button
+                    type="button"
+                    onclick="loadFrameDemo('page2')"
+                    class="px-3 py-1.5 text-xs font-bold bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg transition-colors"
+                  >
+                    Ouvrir page2.html
+                  </button>
+                </div>
+                <iframe
+                  id="iframe-demo-cadre"
+                  name="cadre"
+                  title="Cadre de démonstration"
+                  srcdoc="&lt;h2 style='font-family: sans-serif; color: #15803d; margin: 0 0 6px'&gt;Page 1&lt;/h2&gt;&lt;p style='font-family: sans-serif; color: #475569; margin: 0'&gt;Cliquez sur « Ouvrir page2.html » : la nouvelle page s'affiche ici, dans le cadre nommé « cadre ».&lt;/p&gt;"
+                  style="
+                    width: 100%;
+                    height: 130px;
+                    border: 1px solid #cbd5e1;
+                    border-radius: 8px;
+                    background: #fff;
+                  "
+                ></iframe>
+              </div>
+
+              <div class="bg-white p-4 rounded-lg border border-slate-200">
+                <h4 class="font-bold text-sm text-slate-800 mb-2">
+                  4. Page externe intégrée (ici
+                  <code>example.com</code>)
+                </h4>
+                <iframe
+                  src="https://example.com"
+                  title="Page externe example.com"
+                  loading="lazy"
+                  style="
+                    width: 100%;
+                    height: 160px;
+                    border: 1px solid #cbd5e1;
+                    border-radius: 8px;
+                    background: #fff;
+                  "
+                ></iframe>
+                <p class="text-xs text-slate-500 mt-2">
+                  Si le cadre reste vide : le site a refusé l'intégration (<code
+                    >X-Frame-Options</code
+                  >
+                  / <code>frame-ancestors</code>) ou l'aperçu est hors ligne.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
 
     <!-- ===== Fenêtre modale « Détails » ===== -->
+    <!-- ===== Repère de retour : visible après l'ouverture d'un onglet / d'une
+         fenêtre (Annexe PDF ou autre nouvelle fenêtre) ===== -->
+    <a
+      id="backToCourse"
+      class="hidden fixed z-[110] items-center gap-2 px-4 py-2 rounded-full bg-brand-700 text-white text-xs font-bold shadow-lg hover:bg-brand-800 transition-colors left-1/2 -translate-x-1/2 bottom-4 max-w-[92vw] sm:bottom-auto sm:top-3"
+      href="html5.html"
+      title="Revenir au cours HTML5 dans cet onglet"
+    >
+      <i class="fa-solid fa-house" data-fa="fa-house"></i>
+      <span class="whitespace-nowrap"
+        >Revenir au cours<span class="hidden sm:inline"> HTML5</span></span
+      >
+    </a>
+
     <div
       id="modal-overlay"
-      class="hidden fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4"
+      class="hidden fixed inset-0 z-[90] bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
@@ -2260,6 +2652,19 @@
             </p>
           </div>
           <div class="flex items-center gap-2 flex-shrink-0">
+            <button
+              type="button"
+              onclick="returnToCourse()"
+              class="w-8 h-8 rounded-lg bg-white/20 hover:bg-white/35 transition-colors flex items-center justify-center"
+              aria-label="Fermer la fenêtre et revenir au cours"
+              title="Fermer la fenêtre et revenir au cours HTML5"
+            >
+              <i
+                class="fa-solid fa-house"
+                data-fa="fa-house"
+                aria-hidden="true"
+              ></i>
+            </button>
             <button
               type="button"
               id="modal-maximize-button"
@@ -3079,9 +3484,9 @@
        placeholder="Votre @ mail"&gt;
 
 &lt;datalist <b class="text-amber-300">id="dl-t-email"</b>&gt;
-    &lt;option value="contact@fleuriste.tn"&gt;&lt;/option&gt;
-    &lt;option value="commandes@fleuriste.tn"&gt;&lt;/option&gt;
-    &lt;option value="livraison@fleuriste.tn"&gt;&lt;/option&gt;
+    &lt;option value="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c0f0302180d0f182c0a0009191e051f1809421802">[email&#160;protected]</a>"&gt;&lt;/option&gt;
+    &lt;option value="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="03606c6e6e626d67667043656f6676716a7077662d776d">[email&#160;protected]</a>"&gt;&lt;/option&gt;
+    &lt;option value="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbd7d2cdc9dad2c8d4d5fbddd7decec9d2c8cfde95cfd5">[email&#160;protected]</a>"&gt;&lt;/option&gt;
 &lt;/datalist&gt;</code></pre>
             <label
               for="dl-i-email"
@@ -3279,10 +3684,14 @@
       aria-label="Remonter en haut de la page"
       title="Haut de page"
     >
-      <i class="fa-solid fa-arrow-up"></i>
+      <i class="fa-solid fa-arrow-up" data-fa="fa-arrow-up"></i>
     </button>
 
     <!-- Scripts JS -->
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script>
       /* Fenêtre modale « Détails » */
       function setModalMaximized(maximized) {
@@ -3331,6 +3740,25 @@
         if (e.key === "Escape") closeModal();
       });
 
+      /* Clic sur le fond sombre autour de la boîte : elle se referme
+         (ce fond couvre tout l'écran ; un clic dans la boîte ne ferme rien). */
+
+      /* Ferme la fenêtre de détails et laisse l'utilisateur sur le cours */
+      function returnToCourse() {
+        closeModal();
+      }
+
+      /* Le bouton « haut de page » fonctionne même si la fenêtre de détails
+         est ouverte : on ferme alors la fenêtre et on remonte. */
+      function goTop() {
+        closeModal();
+        try {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (err) {
+          window.scrollTo(0, 0);
+        }
+      }
+
       function switchTab(sectionId, mode) {
         const codeEl = document.getElementById(sectionId + "-code");
         const previewEl = document.getElementById(sectionId + "-preview");
@@ -3368,6 +3796,21 @@
           );
           btnCode.classList.add("text-slate-500");
         }
+      }
+
+      /* Démo iframe : simule deux pages chargées dans le cadre nommé */
+      function loadFrameDemo(which) {
+        var f = document.getElementById("iframe-demo-cadre");
+        if (!f) return;
+        var pages = {
+          page1:
+            "<h2 style='font-family: sans-serif; color: #15803d; margin: 0 0 6px'>Page 1</h2>" +
+            "<p style='font-family: sans-serif; color: #475569; margin: 0'>Vous êtes sur la page 1, affichée dans le cadre nommé « cadre ».</p>",
+          page2:
+            "<h2 style='font-family: sans-serif; color: #b45309; margin: 0 0 6px'>Page 2</h2>" +
+            "<p style='font-family: sans-serif; color: #475569; margin: 0'>Le même cadre affiche maintenant la page 2, sans recharger la page principale.</p>",
+        };
+        f.srcdoc = pages[which] || pages.page1;
       }
 
       document
@@ -3504,10 +3947,191 @@
         window.addEventListener("load", update);
         update();
 
-        /* --- Remonter en haut --- */
-        topBtn.addEventListener("click", function () {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+        /* --- Remonter en haut (ferme aussi la fenêtre de détails) --- */
+        topBtn.addEventListener("click", goTop);
+      })();
+
+      /* Détecte qu'un nouvel onglet / une nouvelle fenêtre a été ouverte
+         (Annexe PDF…) : à la fermeture, le repère « Revenir au cours HTML5 »
+         s'affiche en haut de la page. */
+      (function () {
+        var back = document.getElementById("backToCourse");
+        var flag = "stiHtml5Retour.afficher";
+        function montre(oui) {
+          back.classList.toggle("hidden", !oui);
+          back.classList.toggle("flex", !!oui);
+        }
+
+        /* Ouverture de la page depuis un autre onglet ou une autre fenêtre */
+        try {
+          if (
+            (window.opener && !window.opener.closed) ||
+            (window.performance &&
+              performance.getEntriesByType &&
+              performance.getEntriesByType("navigation")[0] &&
+              performance.getEntriesByType("navigation")[0].type ===
+                "back_forward")
+          ) {
+            montre(true);
+          }
+        } catch (err) {}
+
+        /* Reçu d'un autre onglet de la même fenêtre (sur un vrai site en ligne) */
+        try {
+          window.addEventListener("storage", function (e) {
+            if (e.key === flag) montre(e.newValue !== "0");
+          });
+        } catch (err) {}
+
+        /* L'annexe PDF a été ouverte depuis ce cours : on note l'instant */
+        var lienPdf = document.getElementById("lienAnnexePdf");
+        if (lienPdf) {
+          lienPdf.addEventListener("click", function () {
+            try {
+              localStorage.setItem(flag, String(Date.now()));
+            } catch (err) {}
+          });
+        }
+
+        /* Fenêtre contextuelle détectée au retour de focus : solution de repli
+           qui fonctionne partout, y compris en local (sans serveur).
+           NB : Chrome applique un « noopener » implicite aux liens
+           target="_blank" ; window.opener est donc souvent vide et c'est la
+           trace enregistrée (localStorage) lors du clic qui prend le relais. */
+        function fenetreOuverteDetectee() {
+          try {
+            if (window.opener) {
+              try {
+                if (!window.opener.closed) return true;
+              } catch (err) {
+                return true; /* opener présent mais inaccessible : autre fenêtre */
+              }
+            }
+          } catch (err) {}
+          try {
+            if (window.self !== window.top)
+              return true; /* page dans un cadre */
+          } catch (err) {
+            return true;
+          }
+          try {
+            var t = parseInt(localStorage.getItem(flag), 10) || 0;
+            if (t && Date.now() - t < 10 * 60 * 1000) return true;
+          } catch (err) {}
+          return false;
+        }
+
+        window.addEventListener("focus", function () {
+          setTimeout(function () {
+            if (fenetreOuverteDetectee()) montre(true);
+          }, 500);
         });
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden && fenetreOuverteDetectee()) montre(true);
+        });
+      })();
+
+      /* ============================================================
+         Icônes : la police Font Awesome est incluse dans le CSS, mais on
+         dessine en plus chaque icône en SVG (mêmes symboles que Font
+         Awesome 6 Free). L'icône s'affiche donc dans tous les cas, et la
+         page reste lisible sans police ni Internet.
+         ============================================================ */
+      (function () {
+        var ICONS = {
+          "fa-arrow-up":
+            '<path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/>',
+          "fa-bolt":
+            '<path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-29.9-20.7H272.5L349.4 44.6z"/>',
+          "fa-box":
+            '<path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>',
+          "fa-chevron-down":
+            '<path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>',
+          "fa-code":
+            '<path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/>',
+          "fa-display":
+            '<path d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z"/>',
+          "fa-expand":
+            '<path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"/>',
+          "fa-eye":
+            '<path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>',
+          "fa-file-pdf":
+            '<path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V448 368c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h16zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H304c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H320v96h16zm128-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H480v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H480v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V368z"/>',
+          "fa-heading":
+            '<path d="M448 64c0-17.7-14.3-32-32-32H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H368V224H144V96h16c17.7 0 32-14.3 32-32s-14.3-32-32-32H96C78.3 32 64 46.3 64 64s14.3 32 32 32H112V416H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H144V288H368V416h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H416V96h16c17.7 0 32-14.3 32-32z"/>',
+          "fa-house":
+            '<path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .1-3.6 .1H96c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>',
+          "fa-list-ol":
+            '<path d="M24 56c0-13.3 10.7-24 24-24H80c13.3 0 24 10.7 24 24V176h16c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24s10.7-24 24-24H56V80H48C34.7 80 24 69.3 24 56zM86.7 341.2c-6.5-7.4-18.3-6.9-24 1.2L51.5 357.9c-7.7 10.8-22.7 13.3-33.5 5.6s-13.3-22.7-5.6-33.5l11.1-15.6c23.7-33.2 72.3-35.6 99.2-4.9c21.3 24.4 20.8 60.9-1.1 84.7L86.8 432H120c13.3 0 24 10.7 24 24s-10.7 24-24 24H32c-9.5 0-18.2-5.6-22-14.4s-2.1-18.9 4.3-25.9l72-78c5.3-5.8 5.4-14.6 .3-20.5zM224 64H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>',
+          "fa-lock":
+            '<path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/>',
+          "fa-magnifying-glass":
+            '<path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>',
+          "fa-pen-to-square":
+            '<path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V480c0 53 43 96 96 96H416c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V480c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32H224c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>',
+          "fa-photo-film":
+            '<path d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 416H384V96H64V416zM544 416V96l0 320zM480 416V96l0 320zM512 96V416c0 17.7 14.3 32 32 32s32-14.3 32-32V96c0-17.7-14.3-32-32-32S512 78.3 512 96zM64 288h96c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32zm64-48a16 16 0 1 1 0-32 16 16 0 1 1 0 32zM64 416h96c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H64c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32zm256-32H448c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32H320c-17.7 0-32 14.3-32 32v96c0 17.7 14.3 32 32 32zM320 160H448c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32H320c-17.7 0-32 14.3-32 32V128c0 17.7 14.3 32 32 32z"/>',
+          "fa-sitemap":
+            '<path d="M192 32c0-17.7-14.3-32-32-32H96C78.3 0 64 14.3 64 32V96c0 17.7 14.3 32 32 32h64v48H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H96v48H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H160c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H128V336H352v48H320c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H448c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32H416V336h32c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H416V160h64c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H352c-17.7 0-32 14.3-32 32V128c0 17.7 14.3 32 32 32h64v48H256V160h64c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H192V32z"/>',
+          "fa-table":
+            '<path d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>',
+          "fa-arrow-up-right-from-square":
+            '<path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/>',
+        };
+        var VIEW = "0 0 640 512";
+        var ns = "http://www.w3.org/2000/svg";
+
+        /* chaque balise <i data-fa="…"> est remplacée par son SVG */
+        [].slice
+          .call(document.querySelectorAll("i[data-fa]"))
+          .forEach(function (i) {
+            var path = ICONS[i.getAttribute("data-fa")];
+            if (!path) return;
+            var svg = document.createElementNS(ns, "svg");
+            svg.setAttribute("viewBox", VIEW);
+            svg.setAttribute("aria-hidden", "true");
+            svg.setAttribute("focusable", "false");
+            svg.setAttribute("class", "fa-svg");
+            svg.innerHTML = path;
+            svg.setAttribute("fill", "currentColor");
+            i.parentNode.replaceChild(svg, i);
+          });
+      })();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b =
+            a.contentDocument || (a.contentWindow && a.contentWindow.document);
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'a44ca3918d572da8',t:'MTc5MTAzNzc2NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
       })();
     </script>
   </body>
